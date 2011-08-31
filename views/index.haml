@@ -1,0 +1,17 @@
+!!!
+
+%html
+    %head
+        %title= "Gas"
+    %body
+        %p= "Tracked purchases: %{purchase_count}" % {:purchase_count => GasPurchase.all.length}
+        %table
+            %tr
+                %th Date
+                %th Gallons
+                %th Miles
+            - GasPurchase.all.each do |purchase|
+                %tr
+                    %td= purchase.timestamp
+                    %td= purchase.gallons
+                    %td= purchase.miles
