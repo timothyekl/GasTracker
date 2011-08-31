@@ -1,0 +1,6 @@
+Ruby webapp for tracking gas purchases. Requires gems:
+
+* Sinatra
+* Haml
+* Sass
+* JSON
