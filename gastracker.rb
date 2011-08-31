@@ -27,13 +27,7 @@ class GasTracker < Sinatra::Base
     haml :index
   end
 
-  post '/get/purchases' do
-    GasPurchase.all.to_json
-  end
-
-  post '/get/purchase/:id' do
-    GasPurchase.first(:id => params[:id]).to_json
-  end
-  
   run! if app_file == $0
 end
+
+require './routes/purchase.rb'
