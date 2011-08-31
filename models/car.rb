@@ -5,5 +5,5 @@ class Car
   property :description, String
 
   has n, :gas_purchases
-  has n, :drivers
+  has n, :drivers, :through => Resource
 end

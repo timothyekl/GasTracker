@@ -4,14 +4,18 @@
     %head
         %title= "Gas"
     %body
-        %p= "Tracked purchases: %{purchase_count}" % {:purchase_count => GasPurchase.all.length}
-        %table
-            %tr
-                %th Date
-                %th Gallons
-                %th Miles
-            - GasPurchase.all.each do |purchase|
+        %p
+            = "Tracking %{count} purchases" % {:count => GasPurchase.all.length}
+            %table
                 %tr
-                    %td= purchase.timestamp
-                    %td= purchase.gallons
-                    %td= purchase.miles
+                    %th Date
+                    %th Gallons
+                    %th Miles
+                - GasPurchase.all.each do |purchase|
+                    %tr
+                        %td= purchase.timestamp
+                        %td= purchase.gallons
+                        %td= purchase.miles
+        %hr
+        %p= "Drivers (%{count}): %{drivers}" % {:count => Driver.all.length, :drivers => Driver.all.map { |d| d.name }.join(", ")}
+        %p= "Cars (%{count}): %{cars}" % {:count => Car.all.length, :cars => Car.all.map { |c| c.description }.join(", ")}

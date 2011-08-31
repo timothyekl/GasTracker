@@ -14,6 +14,18 @@ class GasTracker < Sinatra::Base
     DataMapper.setup(:default, "sqlite:database/development.db")
     DataMapper.auto_upgrade!
     DataMapper.finalize
+
+    if Car.all.length == 0
+      puts "Creating default car"
+      car = Car.create(:description => "Default car")
+      car.save
+    end
+
+    if Driver.all.length == 0
+      puts "Creating default driver"
+      driver = Driver.create(:name => "Default driver")
+      driver.save
+    end
   end
 
   get '/' do 
@@ -30,4 +42,4 @@ class GasTracker < Sinatra::Base
   run! if app_file == $0
 end
 
-require './routes/purchase.rb'
+Dir.glob('./routes/*.rb').each { |f| require f }
