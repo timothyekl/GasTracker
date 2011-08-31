@@ -2,6 +2,7 @@ require 'sinatra/base'
 
 require 'haml'
 require 'sass'
+require 'json'
 
 require 'data_mapper'
 Dir.glob('./models/*.rb').each { |f| require f }
@@ -24,6 +25,14 @@ class GasTracker < Sinatra::Base
     @purchase.save
 
     haml :index
+  end
+
+  post '/get/purchases' do
+    GasPurchase.all.to_json
+  end
+
+  post '/get/purchase/:id' do
+    GasPurchase.first(:id => params[:id]).to_json
   end
   
   run! if app_file == $0
