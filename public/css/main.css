@@ -1,0 +1,20 @@
+div.sidebar {
+    float:right;
+    width:300px;
+    background-color:#CCCCFF;
+    padding:6px;
+}
+
+input {
+    width:80px;
+}
+#timestamp {
+    width:200px;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }

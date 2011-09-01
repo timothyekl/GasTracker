@@ -3,10 +3,19 @@
 %html
     %head
         %title= "Gas"
+
+        %script{:type => "text/javascript", :src => "http://code.jquery.com/jquery.min.js"}
+        %script{:type => "text/javascript", :src => "http://code.jquery.com/ui/jquery-ui-git.js"}
+        //%script{:type => "text/javascript", :src => "/js/jquery-ui-timepicker-addon.js"}
+        %script{:type => "text/javascript", :src => "https://raw.github.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js"}
+        %script{:type => "text/javascript", :src => "/js/index.js"}
+
+        %link{:rel => "stylesheet", :href => "http://code.jquery.com/ui/jquery-ui-git.css"}
+        %link{:rel => "stylesheet", :href => "/css/main.css"}
     %body
         %p
             = "Tracking %{count} purchases" % {:count => GasPurchase.all.length}
-            %div{:style => "float:right;width:300px;background-color:#CCCCFF;padding:6px;"}
+            %div{:class => "sidebar"}
                 = "Total gallons purchased: #{(GasPurchase.all.map &:gallons).inject(:+)}"
                 %br
                 = "Total miles traveled: #{(GasPurchase.all.map &:miles).inject(:+)}"
@@ -31,7 +40,7 @@
                     %th Car
                     %th Driver
                     %th
-                - GasPurchase.all.each do |purchase|
+                - GasPurchase.all(:order => [ :timestamp.desc ]).each do |purchase|
                     %tr
                         %td= purchase.timestamp.to_time.strftime("%Y.%m.%d at %I:%M %p")
                         %td= purchase.gallons
@@ -39,12 +48,16 @@
                         %td= purchase.cost
                         %td= purchase.car.description
                         %td= purchase.driver.name
-                        %td
+                        %td 
+                            %form{:action => "/delete/purchase", :method => "POST"}
+                                %input{:type => "hidden", :name => "redirect", :value => "/"}
+                                %input{:type => "hidden", :name => "id", :value => purchase.id}
+                                %input{:type => "submit", :value => "Delete"}
                 %tr
                     %form{:action => "/add/purchase", :method => "POST"}
                         %input{:type => "hidden", :name => "redirect", :value => "/"}
                         %td
-                            %input{:type => "text", :name => "timestamp"}
+                            %input{:type => "text", :name => "timestamp", :id => "timestamp"}
                         %td
                             %input{:type => "text", :name => "gallons"}
                         %td

@@ -10,6 +10,7 @@ Dir.glob('./models/*.rb').each { |f| require f }
 class GasTracker < Sinatra::Base
   configure do
     set :sessions, true
+    set :public, File.dirname(__FILE__) + "/public"
 
     DataMapper.setup(:default, "sqlite:database/development.db")
     DataMapper.auto_upgrade!

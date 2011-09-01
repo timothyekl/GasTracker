@@ -1,6 +1,6 @@
 class GasTracker
   post '/get/purchases' do
-    GasPurchase.all.to_json
+    GasPurchase.all(:order => [ :timestamp.desc ]).to_json
   end
   
   post '/get/purchase/:id' do
@@ -11,7 +11,7 @@ class GasTracker
     begin
       timestamp = DateTime.parse(params[:timestamp])
     rescue ArgumentError
-      return {:success => false, :error => "Could not parse timestamp string"}.to_json
+      return {:success => false, :error => "Could not parse timestamp string", :value => params[:timestamp]}.to_json
     end
 
     gallons = params[:gallons].to_f
@@ -63,6 +63,24 @@ class GasTracker
       end
     else
       return {:success => false, :error => "Could not save new purchase object"}.to_json
+    end
+  end
+
+  post '/delete/purchase' do
+    purchase_id = params[:id].to_i
+    if purchase_id.to_s != params[:id]
+      return {:success => false, :error => "Could not parse purchase ID", :value => purchase_id}
+    end
+
+    purchase = GasPurchase.first(:id => purchase_id)
+    if !purchase.destroy
+      return {:success => false, :error => "Could not destroy purchase", :value => purchase_id}
+    end
+
+    if params[:redirect].nil?
+      return {:success => true}
+    else
+      redirect params[:redirect]
     end
   end
 end
