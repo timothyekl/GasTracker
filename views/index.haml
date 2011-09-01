@@ -20,6 +20,8 @@
                 = "Average cost per purchase: #{(GasPurchase.all.map &:cost).inject(:+) / GasPurchase.all.length}"
                 %br
                 = "Average miles per gallon: #{(GasPurchase.all.map &:miles).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+)}"
+                %br
+                = "Average cost per gallon: #{(GasPurchase.all.map &:cost).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+)}"
             %table
                 %tr
                     %th Date
