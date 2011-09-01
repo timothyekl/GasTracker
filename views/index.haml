@@ -36,9 +36,13 @@
                         %td
                             %input{:type => "text", :name => "cost"}
                         %td
-                            %input{:type => "text", :name => "car"}
+                            %select{:name => "car"}
+                                - Car.all.each do |car|
+                                    %option{:value => car.id}= car.description
                         %td
-                            %input{:type => "text", :name => "driver"}
+                            %select{:name => "driver"}
+                                - Driver.all.each do |driver|
+                                    %option{:value => driver.id}= driver.name
                         %td
                             %input{:type => "submit", :name => "submit", :value => "Add"}
         %hr
