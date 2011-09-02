@@ -30,13 +30,6 @@ class GasTracker < Sinatra::Base
   end
 
   get '/' do 
-    @purchase = GasPurchase.create(
-      :timestamp => Time.new,
-      :gallons => 8.3,
-      :miles => 250.0
-    )
-    @purchase.save
-
     haml :index
   end
 
