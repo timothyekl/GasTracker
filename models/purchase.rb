@@ -1,4 +1,4 @@
-class GasPurchase
+class Purchase
   include DataMapper::Resource
 
   property :id, Serial

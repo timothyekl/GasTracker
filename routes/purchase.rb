@@ -20,17 +20,17 @@ class GasTracker
     end
 
     puts conds
-    @purchases = GasPurchase.all(:conditions => conds)
+    @purchases = Purchase.all(:conditions => conds)
 
     haml :purchases
   end
 
   post '/get/purchases' do
-    GasPurchase.all(:order => [ :timestamp.desc ]).to_json
+    Purchase.all(:order => [ :timestamp.desc ]).to_json
   end
   
   post '/get/purchase/:id' do
-    GasPurchase.first(:id => params[:id]).to_json
+    Purchase.first(:id => params[:id]).to_json
   end
 
   post '/add/purchase' do
@@ -73,7 +73,7 @@ class GasTracker
       return {:success => false, :error => "Could not find driver with ID %{id}" % {:id => driver_id}}.to_json
     end
 
-    purchase = GasPurchase.create(
+    purchase = Purchase.create(
       :timestamp => timestamp,
       :gallons => gallons,
       :miles => miles,
@@ -98,7 +98,7 @@ class GasTracker
       return {:success => false, :error => "Could not parse purchase ID", :value => purchase_id}
     end
 
-    purchase = GasPurchase.first(:id => purchase_id)
+    purchase = Purchase.first(:id => purchase_id)
     if !purchase.destroy
       return {:success => false, :error => "Could not destroy purchase", :value => purchase_id}
     end

@@ -5,5 +5,5 @@ class Driver
   property :name, String
 
   has n, :cars, :through => Resource
-  has n, :gas_purchases
+  has n, :purchases
 end

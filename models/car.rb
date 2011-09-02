@@ -4,6 +4,6 @@ class Car
   property :id, Serial
   property :description, String
 
-  has n, :gas_purchases
+  has n, :purchases
   has n, :drivers, :through => Resource
 end

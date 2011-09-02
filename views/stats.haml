@@ -1,18 +1,18 @@
-- if GasPurchase.all.length == 0
+- if Purchase.all.length == 0
     = "Add a purchase to get started!"
 - else
-    = "Total gallons purchased: #{(GasPurchase.all.map &:gallons).inject(:+)}"
+    = "Total gallons purchased: #{(Purchase.all.map &:gallons).inject(:+)}"
     %br
-    = "Total miles traveled: #{(GasPurchase.all.map &:miles).inject(:+)}"
+    = "Total miles traveled: #{(Purchase.all.map &:miles).inject(:+)}"
     %br
-    = "Total cost: #{"%.2f" % ((GasPurchase.all.map &:cost).inject(:+))}"
+    = "Total cost: #{"%.2f" % ((Purchase.all.map &:cost).inject(:+))}"
     %hr
-    = "Average gallons per purchase: #{(GasPurchase.all.map &:gallons).inject(:+) / GasPurchase.all.length}"
+    = "Average gallons per purchase: #{(Purchase.all.map &:gallons).inject(:+) / Purchase.all.length}"
     %br
-    = "Average miles per purchase: #{(GasPurchase.all.map &:miles).inject(:+) / GasPurchase.all.length}"
+    = "Average miles per purchase: #{(Purchase.all.map &:miles).inject(:+) / Purchase.all.length}"
     %br
-    = "Average cost per purchase: #{"%.2f" % ((GasPurchase.all.map &:cost).inject(:+) / GasPurchase.all.length)}"
+    = "Average cost per purchase: #{"%.2f" % ((Purchase.all.map &:cost).inject(:+) / Purchase.all.length)}"
     %br
-    = "Average miles per gallon: #{(GasPurchase.all.map &:miles).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+)}"
+    = "Average miles per gallon: #{(Purchase.all.map &:miles).inject(:+) / (Purchase.all.map &:gallons).inject(:+)}"
     %br
-    = "Average cost per gallon: #{"%.2f" % ((GasPurchase.all.map &:cost).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+))}"
+    = "Average cost per gallon: #{"%.2f" % ((Purchase.all.map &:cost).inject(:+) / (Purchase.all.map &:gallons).inject(:+))}"

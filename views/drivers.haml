@@ -24,7 +24,7 @@
                     %tr
                         %td= driver.name
                         %td
-                            %a{:href => "/purchases?driver=#{driver.id}"}= driver.gas_purchases.length
+                            %a{:href => "/purchases?driver=#{driver.id}"}= driver.purchases.length
                         %td 
                             %form{:action => "/delete/driver", :method => "POST"}
                                 %input{:type => "hidden", :name => "redirect", :value => "/drivers"}
