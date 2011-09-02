@@ -2,22 +2,24 @@ class GasTracker
   get '/purchases' do
     conds = {}
 
-    car_id = params[:car_id]
-    if !car_id.nil?
+    car_id = params[:car].to_i
+    if !car_id.nil? && car_id.to_s == params[:car]
       car = Car.first(:id => car_id)
       if !car.nil?
         conds[:car] = car
       end
     end
 
-    driver_id = params[:driver_id]
-    if !driver_id.nil?
+    driver_id = params[:driver].to_i
+    puts driver_id
+    if !driver_id.nil? && driver_id.to_s == params[:driver]
       driver = Driver.first(:id => driver_id)
       if !driver.nil?
         conds[:driver] = driver
       end
     end
 
+    puts conds
     @purchases = GasPurchase.all(:conditions => conds)
 
     haml :purchases
