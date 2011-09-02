@@ -1,0 +1,3 @@
+jquery.min.js http://code.jquery.com/jquery.min.js
+jquery-ui-git.js http://code.jquery.com/ui/jquery-ui-git.js
+jquery-ui-timepicker-addon.js https://raw.github.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js
