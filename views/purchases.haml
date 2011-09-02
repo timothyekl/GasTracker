@@ -34,14 +34,14 @@
                         %td= purchase.driver.name
                         %td 
                             %form{:action => "/delete/purchase", :method => "POST"}
-                                %input{:type => "hidden", :name => "redirect", :value => "/"}
+                                %input{:type => "hidden", :name => "redirect", :value => "/purchases"}
                                 %input{:type => "hidden", :name => "id", :value => purchase.id}
                                 %input{:type => "submit", :value => "Delete"}
                 %tr
                     %form{:action => "/add/purchase", :method => "POST"}
-                        %input{:type => "hidden", :name => "redirect", :value => "/"}
+                        %input{:type => "hidden", :name => "redirect", :value => "/purchases"}
                         %td
-                            %input{:type => "text", :name => "timestamp", :id => "timestamp"}
+                            %input{:type => "text", :name => "timestamp", :id => "timestamp", :class => "wide"}
                         %td
                             %input{:type => "text", :name => "gallons"}
                         %td

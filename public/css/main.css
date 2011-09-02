@@ -8,7 +8,7 @@ div.sidebar {
 input {
     width:80px;
 }
-#timestamp {
+input.wide {
     width:200px;
 }
 
