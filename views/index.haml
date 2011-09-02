@@ -6,7 +6,6 @@
 
         %script{:type => "text/javascript", :src => "http://code.jquery.com/jquery.min.js"}
         %script{:type => "text/javascript", :src => "http://code.jquery.com/ui/jquery-ui-git.js"}
-        //%script{:type => "text/javascript", :src => "/js/jquery-ui-timepicker-addon.js"}
         %script{:type => "text/javascript", :src => "https://raw.github.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js"}
         %script{:type => "text/javascript", :src => "/js/index.js"}
 
@@ -16,21 +15,24 @@
         %p
             = "Tracking %{count} purchases" % {:count => GasPurchase.all.length}
             %div{:class => "sidebar"}
-                = "Total gallons purchased: #{(GasPurchase.all.map &:gallons).inject(:+)}"
-                %br
-                = "Total miles traveled: #{(GasPurchase.all.map &:miles).inject(:+)}"
-                %br
-                = "Total cost: #{(GasPurchase.all.map &:cost).inject(:+)}"
-                %hr
-                = "Average gallons per purchase: #{(GasPurchase.all.map &:gallons).inject(:+) / GasPurchase.all.length}"
-                %br
-                = "Average miles per purchase: #{(GasPurchase.all.map &:miles).inject(:+) / GasPurchase.all.length}"
-                %br
-                = "Average cost per purchase: #{(GasPurchase.all.map &:cost).inject(:+) / GasPurchase.all.length}"
-                %br
-                = "Average miles per gallon: #{(GasPurchase.all.map &:miles).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+)}"
-                %br
-                = "Average cost per gallon: #{(GasPurchase.all.map &:cost).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+)}"
+                - if GasPurchase.all.length == 0
+                    = "Add a purchase to get started!"
+                - else
+                    = "Total gallons purchased: #{(GasPurchase.all.map &:gallons).inject(:+)}"
+                    %br
+                    = "Total miles traveled: #{(GasPurchase.all.map &:miles).inject(:+)}"
+                    %br
+                    = "Total cost: #{(GasPurchase.all.map &:cost).inject(:+)}"
+                    %hr
+                    = "Average gallons per purchase: #{(GasPurchase.all.map &:gallons).inject(:+) / GasPurchase.all.length}"
+                    %br
+                    = "Average miles per purchase: #{(GasPurchase.all.map &:miles).inject(:+) / GasPurchase.all.length}"
+                    %br
+                    = "Average cost per purchase: #{(GasPurchase.all.map &:cost).inject(:+) / GasPurchase.all.length}"
+                    %br
+                    = "Average miles per gallon: #{(GasPurchase.all.map &:miles).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+)}"
+                    %br
+                    = "Average cost per gallon: #{(GasPurchase.all.map &:cost).inject(:+) / (GasPurchase.all.map &:gallons).inject(:+)}"
             %table
                 %tr
                     %th Date
@@ -40,7 +42,7 @@
                     %th Car
                     %th Driver
                     %th
-                - GasPurchase.all(:order => [ :timestamp.desc ]).each do |purchase|
+                - GasPurchase.all(:order => [ :timestamp.asc ]).each do |purchase|
                     %tr
                         %td= purchase.timestamp.to_time.strftime("%Y.%m.%d at %I:%M %p")
                         %td= purchase.gallons
