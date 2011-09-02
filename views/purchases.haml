@@ -60,4 +60,4 @@
                             %input{:type => "submit", :name => "submit", :value => "Add"}
         %hr
         %p= "<a href='/drivers'>Drivers</a> (#{Driver.all.length}): #{Driver.all.map{|d| "<a href='/purchases?driver=#{d.id}'>#{d.name}</a>"}.join(', ')}"
-        %p= "Cars (%{count}): %{cars}" % {:count => Car.all.length, :cars => Car.all.map { |c| c.description }.join(", ")}
+        %p= "<a href='/cars'>Cars</a> (#{Car.all.length}): #{Car.all.map{|c| "<a href='/purchases?car=#{c.id}'>#{c.description}</a>"}.join(', ')}"
