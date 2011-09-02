@@ -1,0 +1,40 @@
+!!!
+
+%html
+    %head
+        %title= "Drivers"
+
+        %script{:type => "text/javascript", :src => "http://code.jquery.com/jquery.min.js"}
+        %script{:type => "text/javascript", :src => "http://code.jquery.com/ui/jquery-ui-git.js"}
+        %script{:type => "text/javascript", :src => "https://raw.github.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js"}
+        %script{:type => "text/javascript", :src => "/js/drivers.js"}
+
+        %link{:rel => "stylesheet", :href => "http://code.jquery.com/ui/jquery-ui-git.css"}
+        %link{:rel => "stylesheet", :href => "/css/main.css"}
+    %body
+        %p
+            = "Showing #{Driver.all.length} drivers"
+            %div{:class => "sidebar"}
+            %table
+                %tr
+                    %th Name
+                    %th Purchases
+                    %th
+                - Driver.all.each do |driver|
+                    %tr
+                        %td= driver.name
+                        %td
+                            %a{:href => "/purchases?driver=#{driver.id}"}= driver.gas_purchases.length
+                        %td 
+                            %form{:action => "/delete/driver", :method => "POST"}
+                                %input{:type => "hidden", :name => "redirect", :value => "/drivers"}
+                                %input{:type => "hidden", :name => "id", :value => driver.id}
+                                %input{:type => "submit", :value => "Delete"}
+                %tr
+                    %form{:action => "/add/driver", :method => "POST"}
+                        %input{:type => "hidden", :name => "redirect", :value => "/drivers"}
+                        %td
+                            %input{:type => "text", :name => "name", :class => "wide"}
+                        %td
+                        %td
+                            %input{:type => "submit", :name => "submit", :value => "Add"}
