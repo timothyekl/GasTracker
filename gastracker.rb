@@ -30,7 +30,7 @@ class GasTracker < Sinatra::Base
   end
 
   get '/' do 
-    haml :index
+    redirect '/purchases'
   end
 
   run! if app_file == $0

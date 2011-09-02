@@ -1,4 +1,8 @@
 class GasTracker
+  get '/purchases' do
+    haml :purchases
+  end
+
   post '/get/purchases' do
     GasPurchase.all(:order => [ :timestamp.desc ]).to_json
   end
