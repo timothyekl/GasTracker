@@ -13,7 +13,7 @@
         %link{:rel => "stylesheet", :href => "/css/main.css"}
     %body
         %p
-            = "Tracking %{count} purchases" % {:count => GasPurchase.all.length}
+            = "Showing #{@purchases.length} of #{GasPurchase.all.length} purchases"
             %div{:class => "sidebar"}
             %table
                 %tr
@@ -24,7 +24,7 @@
                     %th Car
                     %th Driver
                     %th
-                - GasPurchase.all(:order => [ :timestamp.asc ]).each do |purchase|
+                - @purchases.each do |purchase|
                     %tr
                         %td= purchase.timestamp.to_time.strftime("%Y.%m.%d at %I:%M %p")
                         %td= purchase.gallons
