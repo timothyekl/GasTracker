@@ -15,6 +15,6 @@ $(function() {
             $("div.sidebar").html(data);
         },
         type: 'GET',
-        url: 'stats'
+        url: '/stats'
     });
 });

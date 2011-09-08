@@ -4,13 +4,13 @@
     %head
         %title= "Gas"
 
-        %script{:type => "text/javascript", :src => "js/lib/jquery.min.js"}
-        %script{:type => "text/javascript", :src => "js/lib/jquery-ui-git.js"}
-        %script{:type => "text/javascript", :src => "js/lib/jquery-ui-timepicker-addon.js"}
-        %script{:type => "text/javascript", :src => "js/index.js"}
+        %script{:type => "text/javascript", :src => "/js/lib/jquery.min.js"}
+        %script{:type => "text/javascript", :src => "/js/lib/jquery-ui-git.js"}
+        %script{:type => "text/javascript", :src => "/js/lib/jquery-ui-timepicker-addon.js"}
+        %script{:type => "text/javascript", :src => "/js/index.js"}
 
         %link{:rel => "stylesheet", :href => "http://code.jquery.com/ui/jquery-ui-git.css"}
-        %link{:rel => "stylesheet", :href => "css/main.css"}
+        %link{:rel => "stylesheet", :href => "/css/main.css"}
     %body
         %p
             = "Showing #{@purchases.length} of #{Purchase.all.length} purchases"
@@ -33,13 +33,13 @@
                         %td= purchase.car.description
                         %td= purchase.driver.name
                         %td 
-                            %form{:action => "delete/purchase", :method => "POST"}
-                                %input{:type => "hidden", :name => "redirect", :value => "purchases"}
+                            %form{:action => "/delete/purchase", :method => "POST"}
+                                %input{:type => "hidden", :name => "redirect", :value => "/purchases"}
                                 %input{:type => "hidden", :name => "id", :value => purchase.id}
                                 %input{:type => "submit", :value => "Delete"}
                 %tr
-                    %form{:action => "add/purchase", :method => "POST"}
-                        %input{:type => "hidden", :name => "redirect", :value => "purchases"}
+                    %form{:action => "/add/purchase", :method => "POST"}
+                        %input{:type => "hidden", :name => "redirect", :value => "/purchases"}
                         %td
                             %input{:type => "text", :name => "timestamp", :id => "timestamp", :class => "wide"}
                         %td
@@ -59,5 +59,5 @@
                         %td
                             %input{:type => "submit", :name => "submit", :value => "Add"}
         %hr
-        %p= "<a href='drivers'>Drivers</a> (#{Driver.all.length}): #{Driver.all.map{|d| "<a href='purchases?driver=#{d.id}'>#{d.name}</a>"}.join(', ')}"
-        %p= "<a href='cars'>Cars</a> (#{Car.all.length}): #{Car.all.map{|c| "<a href='purchases?car=#{c.id}'>#{c.description}</a>"}.join(', ')}"
+        %p= "<a href='/drivers'>Drivers</a> (#{Driver.all.length}): #{Driver.all.map{|d| "<a href='/purchases?driver=#{d.id}'>#{d.name}</a>"}.join(', ')}"
+        %p= "<a href='/cars'>Cars</a> (#{Car.all.length}): #{Car.all.map{|c| "<a href='/purchases?car=#{c.id}'>#{c.description}</a>"}.join(', ')}"
