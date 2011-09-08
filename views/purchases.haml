@@ -26,7 +26,7 @@
                     %th
                 - @purchases.each do |purchase|
                     %tr
-                        %td= purchase.timestamp.to_time.strftime("%Y.%m.%d at %I:%M %p")
+                        %td= Time.parse(purchase.timestamp.to_s).strftime("%Y.%m.%d at %I:%M %p")
                         %td= purchase.gallons
                         %td= purchase.miles
                         %td= "%.2f" % purchase.cost
