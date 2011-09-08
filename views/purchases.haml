@@ -14,7 +14,7 @@
     %body
         %p
             = "Showing #{@purchases.length} of #{Purchase.all.length} purchases"
-            %div{:class => "sidebar"}
+            %div{:class => "sidebar"}= haml :stats
             %table
                 %tr
                     %th Date
