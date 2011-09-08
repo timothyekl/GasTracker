@@ -11,6 +11,7 @@ class GasTracker < Sinatra::Base
   configure do
     set :sessions, true
     set :public, File.dirname(__FILE__) + "/public"
+    set :prefixed_redirects, true
 
     DataMapper.setup(:default, "sqlite:database/development.db")
     DataMapper.auto_upgrade!
