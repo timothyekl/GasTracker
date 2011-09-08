@@ -4,13 +4,13 @@
     %head
         %title= "Cars"
 
-        %script{:type => "text/javascript", :src => "/js/lib/jquery.min.js"}
-        %script{:type => "text/javascript", :src => "/js/lib/jquery-ui-git.js"}
-        %script{:type => "text/javascript", :src => "/js/lib/jquery-ui-timepicker-addon.js"}
-        %script{:type => "text/javascript", :src => "/js/cars.js"}
+        %script{:type => "text/javascript", :src => "js/lib/jquery.min.js"}
+        %script{:type => "text/javascript", :src => "js/lib/jquery-ui-git.js"}
+        %script{:type => "text/javascript", :src => "js/lib/jquery-ui-timepicker-addon.js"}
+        %script{:type => "text/javascript", :src => "js/cars.js"}
 
         %link{:rel => "stylesheet", :href => "http://code.jquery.com/ui/jquery-ui-git.css"}
-        %link{:rel => "stylesheet", :href => "/css/main.css"}
+        %link{:rel => "stylesheet", :href => "css/main.css"}
     %body
         %p
             = "Showing #{Car.all.length} cars"
@@ -24,15 +24,15 @@
                     %tr
                         %td= car.description
                         %td
-                            %a{:href => "/purchases?car=#{car.id}"}= car.purchases.length
+                            %a{:href => "purchases?car=#{car.id}"}= car.purchases.length
                         %td 
-                            %form{:action => "/delete/car", :method => "POST"}
-                                %input{:type => "hidden", :name => "redirect", :value => "/cars"}
+                            %form{:action => "delete/car", :method => "POST"}
+                                %input{:type => "hidden", :name => "redirect", :value => "cars"}
                                 %input{:type => "hidden", :name => "id", :value => car.id}
                                 %input{:type => "submit", :value => "Delete"}
                 %tr
-                    %form{:action => "/add/car", :method => "POST"}
-                        %input{:type => "hidden", :name => "redirect", :value => "/cars"}
+                    %form{:action => "add/car", :method => "POST"}
+                        %input{:type => "hidden", :name => "redirect", :value => "cars"}
                         %td
                             %input{:type => "text", :name => "description", :class => "wide"}
                         %td
