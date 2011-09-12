@@ -18,20 +18,22 @@
             %table{:class => "alternated"}
                 %tr
                     %th Date
-                    %th Gallons
-                    %th Miles
-                    %th Cost
                     %th Car
                     %th Driver
+                    %th Miles
+                    %th MPG
+                    %th Gallons
+                    %th Cost
                     %th
                 - @purchases.each do |purchase|
                     %tr
                         %td= Time.parse(purchase.timestamp.to_s).strftime("%Y.%m.%d at %I:%M %p")
-                        %td= purchase.gallons
-                        %td= purchase.miles
-                        %td= "%.2f" % purchase.cost
                         %td= purchase.car.description
                         %td= purchase.driver.name
+                        %td= "%.1f" % purchase.miles
+                        %td= "%.2f" % purchase.miles_per_gallon
+                        %td= "%.3f" % purchase.gallons
+                        %td= "%.2f" % purchase.cost
                         %td 
                             %form{:action => "delete/purchase", :method => "POST"}
                                 %input{:type => "hidden", :name => "redirect", :value => "/purchases"}
@@ -43,12 +45,6 @@
                         %td
                             %input{:type => "text", :name => "timestamp", :id => "timestamp", :class => "wide"}
                         %td
-                            %input{:type => "text", :name => "gallons"}
-                        %td
-                            %input{:type => "text", :name => "miles"}
-                        %td
-                            %input{:type => "text", :name => "cost"}
-                        %td
                             %select{:name => "car"}
                                 - Car.all.each do |car|
                                     %option{:value => car.id}= car.description
@@ -56,6 +52,13 @@
                             %select{:name => "driver"}
                                 - Driver.all.each do |driver|
                                     %option{:value => driver.id}= driver.name
+                        %td
+                            %input{:type => "text", :name => "miles"}
+                        %td --
+                        %td
+                            %input{:type => "text", :name => "gallons"}
+                        %td
+                            %input{:type => "text", :name => "cost"}
                         %td
                             %input{:type => "submit", :name => "submit", :value => "Add"}
         %hr

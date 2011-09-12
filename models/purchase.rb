@@ -9,4 +9,8 @@ class Purchase
 
   belongs_to :driver
   belongs_to :car
+
+  def miles_per_gallon
+    return self.miles / self.gallons
+  end
 end
