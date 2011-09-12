@@ -15,7 +15,7 @@
         %p
             = "Showing #{@purchases.length} of #{Purchase.all.length} purchases"
             %div{:class => "sidebar"}= haml :stats
-            %table
+            %table{:class => "alternated"}
                 %tr
                     %th Date
                     %th Gallons
