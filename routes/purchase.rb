@@ -11,7 +11,6 @@ class GasTracker
     end
 
     driver_id = params[:driver].to_i
-    puts driver_id
     if !driver_id.nil? && driver_id.to_s == params[:driver]
       driver = Driver.first(:id => driver_id)
       if !driver.nil?
@@ -19,7 +18,6 @@ class GasTracker
       end
     end
 
-    puts conds
     @purchases = Purchase.all(:conditions => conds)
 
     haml :purchases
