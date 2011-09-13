@@ -1,3 +1,5 @@
 database/*.db
 tags
-tmp
+tmp/import.rb
+tmp/gas.csv
+tmp/*.png
