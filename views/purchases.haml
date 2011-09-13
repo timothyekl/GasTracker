@@ -23,6 +23,7 @@
                     %th Miles
                     %th MPG
                     %th Gallons
+                    %th Cost/Gal
                     %th Cost
                     %th
                 - @purchases.each do |purchase|
@@ -33,6 +34,7 @@
                         %td= "%.1f" % purchase.miles
                         %td= "%.2f" % purchase.miles_per_gallon
                         %td= "%.3f" % purchase.gallons
+                        %td= "%.2f" % purchase.cost_per_gallon
                         %td= "%.2f" % purchase.cost
                         %td 
                             %form{:action => "delete/purchase", :method => "POST"}
@@ -57,6 +59,7 @@
                         %td --
                         %td
                             %input{:type => "text", :name => "gallons"}
+                        %td --
                         %td
                             %input{:type => "text", :name => "cost"}
                         %td

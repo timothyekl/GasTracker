@@ -13,4 +13,8 @@ class Purchase
   def miles_per_gallon
     return self.miles / self.gallons
   end
+
+  def cost_per_gallon
+    return self.cost / self.gallons
+  end
 end
