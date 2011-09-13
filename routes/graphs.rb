@@ -1,6 +1,10 @@
 require 'gruff'
 
 class GasTracker
+  
+  get '/graph' do
+    "Graphs!"
+  end
 
   get '/graph/gas_cost_over_time.png' do
     width = 280
@@ -9,7 +13,7 @@ class GasTracker
     g = Gruff::Line.new(width)
     g.title = "Gas cost over time"
 
-    cost_data = Purchase.all.map{|p| p.cost_per_gallon.round(2)}
+    cost_data = Purchase.all.map{|p| p.cost_per_gallon._round_to(2)}
 
     g.minimum_value = cost_data.min.floor
     g.maximum_value = cost_data.max.ceil

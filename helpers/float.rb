@@ -10,4 +10,8 @@ class Float
   def format_miles
     return "%.1f" % self
   end
+
+  def _round_to(places)
+    return ((10.0 ** places) * self).round / (10.0 ** places)
+  end
 end
