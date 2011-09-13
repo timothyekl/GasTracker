@@ -31,11 +31,11 @@
                         %td= Time.parse(purchase.timestamp.to_s).strftime("%Y.%m.%d at %I:%M %p")
                         %td= purchase.car.description
                         %td= purchase.driver.name
-                        %td= "%.1f" % purchase.miles
-                        %td= "%.2f" % purchase.miles_per_gallon
-                        %td= "%.3f" % purchase.gallons
-                        %td= "%.2f" % purchase.cost_per_gallon
-                        %td= "%.2f" % purchase.cost
+                        %td= purchase.miles.format_miles
+                        %td= purchase.miles_per_gallon.format_miles
+                        %td= purchase.gallons.format_gallons
+                        %td= purchase.cost_per_gallon.format_cost
+                        %td= purchase.cost.format_cost
                         %td 
                             %form{:action => "delete/purchase", :method => "POST"}
                                 %input{:type => "hidden", :name => "redirect", :value => "/purchases"}

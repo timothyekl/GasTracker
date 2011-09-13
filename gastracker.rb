@@ -5,6 +5,7 @@ require 'sass'
 require 'json'
 
 require 'data_mapper'
+Dir.glob('./helpers/*.rb').each { |f| require f }
 Dir.glob('./models/*.rb').each { |f| require f }
 
 class GasTracker < Sinatra::Base
