@@ -18,7 +18,7 @@ class GasTracker
       end
     end
 
-    @purchases = Purchase.all(:conditions => conds)
+    @purchases = Purchase.all(:conditions => conds, :order => [ :timestamp.desc ])
 
     haml :purchases
   end

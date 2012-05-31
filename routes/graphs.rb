@@ -7,8 +7,7 @@ class GasTracker
   end
 
   get '/graph/gas_cost_over_time.png' do
-    width = 280
-    width = params[:width].to_i if !(params[:width].nil?)
+    width = (params[:width] || 280).to_i
 
     g = Gruff::Line.new(width)
     g.title = "Gas cost over time"
@@ -23,6 +22,26 @@ class GasTracker
     g.theme = g.theme_greyscale
     
     path = './tmp/gas_cost_over_time.png'
+    g.write(path)
+    send_file path, :type => "image/png", :disposition => "inline"
+  end
+
+  get '/graph/mpg_over_time.png' do
+    width = (params[:width] || 280).to_i
+
+    g = Gruff::Line.new(width)
+    g.title = "MPG over time"
+
+    mpg_data = Purchase.all.map{|p| p.miles_per_gallon._round_to(2)}
+
+    g.minimum_value = mpg_data.min.floor
+    g.maximum_value = mpg_data.max.ceil
+    g.data("MPG", mpg_data, '#96f')
+    g.hide_dots = true
+    g.hide_legend = true
+    g.theme = g.theme_greyscale
+
+    path = './tmp/mpg_over_time.png'
     g.write(path)
     send_file path, :type => "image/png", :disposition => "inline"
   end
